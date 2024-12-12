@@ -3,6 +3,7 @@ from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import os
+from flask import send_from_directory
 
 
 UPLOAD_FOLDER = './uploads/web'
@@ -10,7 +11,7 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
 app.secret_key = 'tototatatiti'
-app.config['UPLOAD_FOLDER'] = './uploads/web'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 auth = HTTPBasicAuth()
 
 users = {
@@ -56,7 +57,10 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash('Fichier téléversé avec succes')
             return redirect(url_for('upload_file', name=filename))
+        # pour aller plus loin:
+        # https://flask.palletsprojects.com/en/stable/patterns/fileuploads/
     return render_template('upload.html')
+
 
 
 if __name__ == '__main__':
