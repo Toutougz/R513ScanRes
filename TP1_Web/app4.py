@@ -64,4 +64,4 @@ def upload_file():
 
 
 if __name__ == '__main__':
-    app.run(port=5001,ssl_context=('cert.pem', 'key.pem'))
+    app.run(port=5001,ssl_context=('./cert.pem', './key.pem'))
