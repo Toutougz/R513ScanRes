@@ -4,3 +4,4 @@ requests
 notebook
 pillow
 pyopenssl
+beautifulsoup4
